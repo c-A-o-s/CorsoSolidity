@@ -1,0 +1,29 @@
+pragma solidity ^0.4.0;
+
+contract RamEDisco {
+    uint128 public numeroUno; //solo storage
+    uint128 public numeroDue; //solo storage
+    uint128[2] public arrayacaso; //solo storage
+
+
+    constructor() public {
+        numeroUno = 1;
+        numeroDue = 2;
+    }
+
+    function testMemoria() public returns(uint128[2]) {
+        int8 intero = 2; //default memory perchè un tipo semplice
+    
+        int256[] memory arrayInMemoria;
+        //arrayInMemoria.push(22); ERRORE
+        arrayInMemoria = new int256[](3); //creo e assegno un array di tre elementi int256bit
+
+        
+        arrayInMemoria = new int256[](4); //per cambiare lunghezza creo un nuovo array in memory
+
+        uint128[2] storage areaDelloStorage; //default storage perchè di tipo complesso. Punta al primo elemento dello storage quando non specificato
+        areaDelloStorage[1] = 10; //[0, 10] 
+
+        return areaDelloStorage;
+    }
+}
